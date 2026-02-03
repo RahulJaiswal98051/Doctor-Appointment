@@ -335,7 +335,7 @@
           <li class="nav-item"><a class="nav-link active" href="{{ route("dashboard.user") }}">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="{{ route('findDoctors') }}">Find Doctor</a></li>
           <li class="nav-item"><a class="nav-link" href="{{ route('myBookings', auth()->user()->id) }}">My Bookings</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ route('profile.update') }}">My Profile</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ route('profile.update') }}">Profile</a></li>
           
           <li class="nav-item ms-lg-3">
             <a href="{{route('logout')}}" class="btn btn-login">Signout</a>

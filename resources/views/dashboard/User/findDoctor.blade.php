@@ -144,7 +144,7 @@
                                 <i class="bi bi-mortarboard me-2"></i>{{ $doctor->degree }}
                             </li>
                             <li class="mb-1">
-                                <i class="bi bi-cash me-2"></i>RS{{ $doctor->consultation_fee }} / Visit
+                                <i class="bi bi-cash me-2"></i>RS {{ $doctor->consultation_fee }} 
                             </li>
                         </ul>
 
