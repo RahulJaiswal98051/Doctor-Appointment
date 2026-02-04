@@ -5,20 +5,25 @@
           <div class="row flex-grow">
             <div class="col-lg-4 mx-auto">
               <div class="auth-form-light text-left p-5">
-                 @if ($errors->any())
-                  <div class="alert alert-danger">
-                  <ul class="mb-0">
-                  @foreach ($errors->all() as $error)
-                  <li>{{ $error }}</li>
-                  @endforeach
-                  </ul>
-                  </div>
-                  @endif
-                  @if(session('error'))
-                  <div class="alert alert-danger">
-                  {{ session('error') }}
-                  </div>
-                  @endif
+                    {{-- Success Message  --}}
+                    @if(session('success'))
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
+
+                      {{-- Error Messages   --}}
+                    @if($errors->any())
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <ul class="mb-0">
+                                @foreach($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    @endif
                 <h4>Set New Password</h4>
                
                 <form action="{{ route('reset.password.submit') }}" method="POST" class="pt-3">

@@ -47,8 +47,7 @@
                                     @case('Completed')
                                         <span class="badge bg-info">Completed</span>
                                         @break
-                                    @default
-                                        <span class="badge bg-light text-dark">Unknown</span>
+                                    
                                 @endswitch
                             </td>
                         </tr>
@@ -60,7 +59,12 @@
                         </tr>
                     @endforelse
                 </tbody>
+               
             </table>
+             <!-- Pagination -->
+                <div class="mt-3 wrapping-pagination">
+                    {{ $appointments->links('pagination::bootstrap-5') }}
+                </div>
         </div>
     </div>
 </div>
