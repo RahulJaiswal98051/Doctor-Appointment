@@ -64,6 +64,7 @@ Route::resource('/appointments', AppointmentController::class);
 Route::get('/myBookings/{id}', [AppointmentController::class, 'userBookings'])->name('myBookings'); //show  appointment details to user
 Route::get('/book-appointment/{doctor_id}/{date}/{time}', [AppointmentController::class, 'bookAppointment'])->name('book.appointment');
 Route::post('/book-appointmentStore/{doctor_id}/{date}/{time}', [AppointmentController::class, 'storefile'])->name('book.appointment.store');
+Route::patch('/appointmentsComplete/{id}', [DoctorController::class, 'statuscomplete'])->name('appointments.complete');
 
 //doctor 
 Route::get('/completeDoctorProfile/{id}', [DoctorController::class, 'completeDoctorProfile'])->name('complete.doctor.profile');

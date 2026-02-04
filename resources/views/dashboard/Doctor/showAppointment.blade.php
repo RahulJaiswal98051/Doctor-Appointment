@@ -17,6 +17,7 @@
                                 <th class="text-center">Date</th>
                                 <th class="text-center">Time</th>
                                 <th class="text-center">Status</th>
+                                <th class="text-center">Actions</th>
                                
                             </tr>
                         </thead>
@@ -35,7 +36,15 @@
                                     <td class="text-center">{{ $appointment->date }}</td>
                                     <td class="text-center">{{ $appointment->time }}</td>
                                     <td class="text-center">{{ $appointment->status }}</td>
-                                   
+                                    <td class="text-center">
+                                     <form action="{{ route('appointments.complete',$appointment->id) }}" method="POST" style="display: inline;">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button type="submit" class="btn btn-inverse-primary btn-rounded">
+                                            <i class="fa-solid fa-check"></i> Complete
+                                        </button>
+                                    </form>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

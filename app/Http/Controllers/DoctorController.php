@@ -162,6 +162,15 @@ class DoctorController extends Controller
         ]);
     }
 
+    public function statuscomplete($id)
+    {
+        $appointment = Appointment::findOrFail($id);
+        $appointment->status = 'Completed';
+        $appointment->save();
+
+        return redirect()->back()->with('success', 'Appointment marked as completed.');
+    }
+
 
   
 
