@@ -44,12 +44,10 @@
     </div>
   </section>
 
-  <!-- How It Works -->
   <section class="container mt-5 pt-5 pb-5">
     <div class="row align-items-center">
       <div class="col-md-6 order-md-2">
         <img src="{{ asset('storage/profile/doctor-character-background_1270-84.avif') }}" class="img-fluid rounded-3" alt="Illustration" style="max-height: 400px; width: auto; display: block; margin: auto;">
-        <!-- Fallback image or illustration -->
         <div class="text-center text-muted small mt-2"></div>
       </div>
       <div class="col-md-6 order-md-1">

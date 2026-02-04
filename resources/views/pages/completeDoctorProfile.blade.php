@@ -7,27 +7,24 @@
             <div class="card">
                   <div class="card-header">Complete Doctor Profile</div> 
                 <div class="card-body">
-                     {{-- Success Message --}}
+                     
+                      {{-- Success Message  --}}
                     @if(session('success'))
-                        <div class="alert alert-success alert-dismissible fade show d-flex justify-content-between align-items-center" role="alert">
-                            <span>{{ session('success') }}</span>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            {{ session('success') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
 
-                    {{-- Error Messages --}}
+                      {{-- Error Messages   --}}
                     @if($errors->any())
-                        <div class="alert alert-danger alert-dismissible fade show d-flex justify-content-between align-items-start" role="alert">
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
                             <ul class="mb-0">
                                 @foreach($errors->all() as $error)
                                     <li>{{ $error }}</li>
                                 @endforeach
                             </ul>
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
 

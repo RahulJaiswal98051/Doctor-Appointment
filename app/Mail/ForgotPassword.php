@@ -9,19 +9,16 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class welcomeEmail extends Mailable
+class ForgotPassword extends Mailable
 {
     use Queueable, SerializesModels;
-  public $sub;
-  public $body;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($subject, $body)
+    public function __construct()
     {
-        $this->sub = $subject;
-        $this->body = $body;
+        //
     }
 
     /**
@@ -30,18 +27,24 @@ class welcomeEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: $this->sub,
+            subject: 'Forgot Password',
         );
     }
 
     /**
      * Get the message content definition.
      */
-    public function content(): Content
+    // public function content(): Content
+    // {
+    //     return new Content(
+    //         view: 'view.name',
+    //     );
+    // }
+    
+     public function build()
     {
-        return new Content(
-            view: 'mail.welcomeMail',
-        );
+        return $this->view('mail.forgotpassword')
+                    ->subject('Password Reset Request');
     }
 
     /**

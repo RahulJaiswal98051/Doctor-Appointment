@@ -24,7 +24,7 @@
                                 </p>
                             </div>
                             <div class="col-md-5 text-md-end mt-2 mt-md-0">
-                                <span class="h5 fw-bold text-primary">RS{{ $doctor->consultation_fee }}</span>
+                                <span class="h5 fw-bold text-primary">RS {{ $doctor->consultation_fee }}</span>
                                 <div class="small text-muted">Consultation Fee</div>
                             </div>
                         </div>
@@ -32,7 +32,6 @@
 
                     {{-- Payment Section --}}
                     <div class="row g-4">
-                        {{-- QR Code (Left Side) --}}
                         <div class="col-md-5 text-center border-end">
                             <h5 class="text-secondary mb-3">1. Scan QR Code</h5>
                             <div class="bg-light p-3 rounded">
@@ -44,7 +43,6 @@
                             <p class="mt-3 small text-muted">Scan using your banking app to pay the fee shown above.</p>
                         </div>
 
-                        {{-- Upload Receipt (Right Side) --}}
                         <div class="col-md-7">
                             <h5 class="text-secondary mb-3">2. Upload Receipt</h5>
                             <form action="{{ route('book.appointment.store', ['doctor_id' => $doctor->id, 'date' => $date, 'time' => $time]) }}" method="POST" enctype="multipart/form-data">

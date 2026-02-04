@@ -153,7 +153,7 @@ class AppointmentController extends Controller
         $appointments = Appointment::with('doctor.user')
             ->where('user_id', $id)
             ->orderBy('date', 'desc')
-            ->paginate(5);
+            ->paginate(7);
 
         return view('dashboard.User.myBooking', compact('appointments'));
     }

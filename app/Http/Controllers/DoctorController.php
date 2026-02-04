@@ -67,8 +67,8 @@ class DoctorController extends Controller
             // Load only upcoming schedules, ordered by date
             'schedules' => function($q) use ($today) {
                 $q->where('date', '>=', $today)
-                  ->orderBy('date', 'asc')
-                  ->limit(10); // Limit to next 10 schedules for performance
+                  ->orderBy('date', 'asc');
+                //   ->limit(3); 
             },
             // Load appointments for upcoming dates
             'appointments' => function($q) use ($today) {
@@ -160,6 +160,15 @@ class DoctorController extends Controller
                 'end' => Carbon::parse($schedule->end_time)->format('h:i A')
             ]
         ]);
+    }
+
+    public function statuscomplete($id)
+    {
+        $appointment = Appointment::findOrFail($id);
+        $appointment->status = 'Completed';
+        $appointment->save();
+
+        return redirect()->back()->with('success', 'Appointment marked as completed.');
     }
 
 

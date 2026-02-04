@@ -13,6 +13,7 @@
             <table class="table table-hover table-bordered align-middle">
                 <thead class="table-light">
                     <tr>
+                        <th scope="col">Doctor</th>
                         <th scope="col"><i class="bi bi-calendar-date"></i> Date</th>
                         <th scope="col"><i class="bi bi-clock"></i> Time</th>
                         <th scope="col"><i class="bi bi-info-circle"></i> Status</th>
@@ -21,6 +22,12 @@
                 <tbody>
                     @forelse ($appointments as $appointment)
                         <tr>
+                            <td>
+                                @if($appointment->doctor->user->profile)
+                                    <img src="{{ asset('storage/profile/' . $appointment->doctor->user->profile) }}" alt="Doctor Profile" class="rounded-circle me-2" width="40" height="40">
+                                @endif
+                                {{ $appointment->doctor->user->name }}
+                            </td>
                             <td>{{ \Carbon\Carbon::parse($appointment->date)->format('d M Y') }}</td>
                             <td>{{ \Carbon\Carbon::parse($appointment->time)->format('h:i A') }}</td>
                               <td>
@@ -40,8 +47,7 @@
                                     @case('Completed')
                                         <span class="badge bg-info">Completed</span>
                                         @break
-                                    @default
-                                        <span class="badge bg-light text-dark">Unknown</span>
+                                    
                                 @endswitch
                             </td>
                         </tr>
@@ -53,7 +59,12 @@
                         </tr>
                     @endforelse
                 </tbody>
+               
             </table>
+             <!-- Pagination -->
+                <div class="mt-3 wrapping-pagination">
+                    {{ $appointments->links('pagination::bootstrap-5') }}
+                </div>
         </div>
     </div>
 </div>

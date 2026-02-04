@@ -127,13 +127,13 @@
                         <h5 class="fw-bold mb-1 doctor-name">Dr. {{ $doctor->user->name }}</h5>
                         <p class="text-primary fw-medium mb-1 doctor-specialist">{{ $doctor->specialization }}</p>
                         
-                        <div class="text-warning small mb-2">
-                             <i class="bi bi-star-fill"></i>
-                             <i class="bi bi-star-fill"></i>
-                             <i class="bi bi-star-fill"></i>
-                             <i class="bi bi-star-fill"></i>
-                             <i class="bi bi-star-half"></i> 
-                             <span class="text-muted text-dark">(4.8)</span>
+                       <div class="mb-3 text-warning small">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        (4.8)
                         </div>
 
                         <ul class="list-unstyled text-muted small text-start ps-3 mb-3">
@@ -144,7 +144,7 @@
                                 <i class="bi bi-mortarboard me-2"></i>{{ $doctor->degree }}
                             </li>
                             <li class="mb-1">
-                                <i class="bi bi-cash me-2"></i>RS{{ $doctor->consultation_fee }} / Visit
+                                <i class="bi bi-cash me-2"></i>RS {{ $doctor->consultation_fee }} Consultation Fee
                             </li>
                         </ul>
 
