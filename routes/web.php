@@ -32,6 +32,12 @@ Route::get('/logout', [UserController::class, 'logout'])->name('logout');
 Route::get('/auth/google', [UserController::class, 'googlelogin'])->name('auth.google');
 Route::get('/auth/google/callback', [UserController::class, 'googleAuthentication'])->name('auth.google.callback');
 
+//Forgot Password
+Route::get('/forgotPassword', [UserController::class, 'forgotPassword'])->name('forgot.password')->middleware('guest');
+Route::post('/forgotPasswordSubmit', [UserController::class, 'forgotPasswordSubmit'])->name('forgot.password.submit')->middleware('guest');
+Route::get('/resetPassword/{token}', [UserController::class, 'resetPassword'])->name('reset.password')->middleware('guest');
+Route::post('/resetPasswordSubmit', [UserController::class, 'resetPasswordSubmit'])->name('reset.password.submit')->middleware('guest');
+
 // Profile
 Route::get('/profileupdate', [UserController::class, 'profile'])->name('profile.update');
 Route::post('/profileUpdatestore', [UserController::class, 'profileUpdate'])->name('profile.update.store')->middleware('auth');

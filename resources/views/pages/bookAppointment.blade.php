@@ -24,7 +24,7 @@
                                 </p>
                             </div>
                             <div class="col-md-5 text-md-end mt-2 mt-md-0">
-                                <span class="h5 fw-bold text-primary">RS{{ $doctor->consultation_fee }}</span>
+                                <span class="h5 fw-bold text-primary">RS {{ $doctor->consultation_fee }}</span>
                                 <div class="small text-muted">Consultation Fee</div>
                             </div>
                         </div>

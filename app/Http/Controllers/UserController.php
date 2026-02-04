@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ForgotPassword;
 
 
 
@@ -186,7 +190,67 @@ class UserController extends Controller
         return redirect()->route('login')->with('success', 'Logout successfully');
     }
 
-    
+    public function forgotPassword(){
+        return view('pages.forgotPassword');
+    }
+
+    public function forgotPasswordSubmit(Request $request){
+        $request->validate([
+            'email' => 'required|email|exists:users,email',
+        ]);
+        
+
+        $token = Str::random(64);
+        DB::table('password_reset_tokens')->insert([
+            'email' => $request->email,
+            'token' => $token,
+            'created_at' => Carbon::now()
+        ]);
+        
+        Mail::send('mail.forgotPassword', ['token' => $token, 'email' => $request->email], function($message) use($request){
+            $message->to($request->email);
+            $message->subject('Password Reset Request');
+        });
+
+        return redirect()->route('login')->with('success', 'Password reset link has been sent to your Email');
+    }
+
+    public function resetPassword($token ){
+        return view('pages.resetPassword', ['token' => $token]);
+    }
+
+    public function resetPasswordSubmit(Request $request)
+{
+    $request->validate([
+        'token' => 'required',
+        'password' => 'required|confirmed|min:6',
+    ]);
+
+    $reset = DB::table('password_reset_tokens')
+        ->where('token', $request->token)
+        ->first();
+
+    if (!$reset) {
+        return back()->with('error', 'Invalid or expired token');
+    }
+
+    if (Carbon::parse($reset->created_at)->addMinutes(5)->isPast()) {
+        return back()->with('error', 'Token expired');
+    }
+
+    User::where('email', $reset->email)
+        ->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+    DB::table('password_reset_tokens')
+        ->where('email', $reset->email)
+        ->delete();
+
+    return redirect()->route('login')
+        ->with('success', 'Password reset successfully');
+}
+
 
     
 }
