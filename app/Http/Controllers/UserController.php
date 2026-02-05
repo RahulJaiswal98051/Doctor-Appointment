@@ -88,7 +88,8 @@ class UserController extends Controller
             default:
                 return redirect()->route('login')->with('error', 'Something went wrong');
             }
-        } else {
+        } 
+        else {
             return redirect()->route('login')->with('error', 'Invalid email or password');
         }
 
